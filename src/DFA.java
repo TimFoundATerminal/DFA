@@ -1,7 +1,7 @@
+import java.util.Objects;
+
 public class DFA {
-
-
-    private boolean valid = false;
+    final private boolean valid;
     final private String[] states;
     final private String[] alphabet;
     final private String initialState;
@@ -9,19 +9,33 @@ public class DFA {
     final private String[][] transitions; // ["currentState", "arrow", "afterState"]
 
 
-    public DFA(String[] states, String[] alphabet, String initialState, String[] acceptedStates, String[][] transitions) {
+    DFA(String[] states, String[] alphabet, String initialState, String[] acceptedStates, String[][] transitions) {
         this.states = states;
         this.alphabet = alphabet;
         this.initialState = initialState;
         this.acceptedStates = acceptedStates;
         this.transitions = transitions;
-        if (this.checkDFAValid()) {
-            this.valid = true;
-        }
+        this.valid = checkDFAValid();
     }
 
     private boolean checkDFAValid() {
+        for (String state : this.states) {
+            for (String letter : alphabet) {
+                if (getTransition(state, letter) == null) {
+                    return false;
+                }
+            }
+        }
         return true;
+    }
+
+    private boolean checkLetter(String letter) {
+        for (String character : this.alphabet) {
+            if (Objects.equals(character, letter)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isValid() {
@@ -38,13 +52,25 @@ public class DFA {
     }
 
     public boolean isWord(String word) {
+        // checks that this is a valid DFA before running
+        if (!this.valid) {
+            System.out.println("Error: this is not a valid DFA");
+            return false;
+        }
+
+        // runs through each letter in the word and transitions accordingly
         String currentState = this.initialState;
         for (int i = 0; i < word.length(); i++) {
-            currentState = this.getTransition(currentState, "" + word.charAt(i));
+            String letter = "" + word.charAt(i);
+            if (!checkLetter(letter)) {
+                System.out.println("Error: word contains letters not in the alphabet");
+                return false;
+            }
+            currentState = this.getTransition(currentState, letter);
         }
 
         for (String acceptedState : acceptedStates) {
-            if (currentState.equals(acceptedState)) {
+            if (Objects.equals(currentState, acceptedState)) {
                 return true;
             }
         }
