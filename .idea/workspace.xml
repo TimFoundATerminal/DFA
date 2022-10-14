@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4b47e91-cc51-4ab9-9f03-92d220916244" name="Changes" comment="Setting up basic class variables (unstable)">
+    <list default="true" id="b4b47e91-cc51-4ab9-9f03-92d220916244" name="Changes" comment="Adding transition functions and accepting states">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/init.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DFA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DFA.java" afterDir="false" />
     </list>
@@ -35,7 +37,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -54,7 +57,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665781147260</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Adding transition functions and accepting states">
+      <created>1665782977022</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665782977022</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -71,6 +81,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Setting up basic class variables" />
     <MESSAGE value="Setting up basic class variables (unstable)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setting up basic class variables (unstable)" />
+    <MESSAGE value="Adding transition functions and accepting states" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding transition functions and accepting states" />
   </component>
 </project>
