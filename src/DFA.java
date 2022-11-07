@@ -1,24 +1,14 @@
 import java.util.Objects;
 
-public class DFA {
+public class DFA extends FA {
     final private boolean valid;
-    final private String[] states;
-    final private String[] alphabet;
-    final private String initialState;
-    final private String[] acceptedStates;
-    final private String[][] transitions; // ["currentState", "arrow", "afterState"]
-
 
     DFA(String[] states, String[] alphabet, String initialState, String[] acceptedStates, String[][] transitions) {
-        this.states = states;
-        this.alphabet = alphabet;
-        this.initialState = initialState;
-        this.acceptedStates = acceptedStates;
-        this.transitions = transitions;
-        this.valid = checkDFAValid();
+        super(states, alphabet, initialState, acceptedStates, transitions);
+        this.valid = checkFAValid();
     }
 
-    private boolean checkDFAValid() {
+    protected boolean checkFAValid() {
         for (String state : this.states) {
             for (String letter : alphabet) {
                 if (getTransition(state, letter) == null) {
@@ -27,15 +17,6 @@ public class DFA {
             }
         }
         return true;
-    }
-
-    private boolean checkLetter(String letter) {
-        for (String character : this.alphabet) {
-            if (Objects.equals(character, letter)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public boolean isValid() {
@@ -62,18 +43,13 @@ public class DFA {
         String currentState = this.initialState;
         for (int i = 0; i < word.length(); i++) {
             String letter = "" + word.charAt(i);
-            if (!checkLetter(letter)) {
+            if (!checkLetterValid(letter)) {
                 System.out.println("Error: word contains letters not in the alphabet");
                 return false;
             }
             currentState = this.getTransition(currentState, letter);
         }
 
-        for (String acceptedState : acceptedStates) {
-            if (Objects.equals(currentState, acceptedState)) {
-                return true;
-            }
-        }
-        return false;
+        return checkAcceptingState(currentState);
     }
 }
